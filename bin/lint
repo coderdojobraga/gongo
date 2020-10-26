@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+. scripts/helpers.sh
+
+source .venv/bin/activate
+
+pylint bot/*.py
+mypy --follow-imports=skip bot/*.py

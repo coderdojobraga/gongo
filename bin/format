@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+. scripts/helpers.sh
+
+source .venv/bin/activate
+
+yapf -vv -i -r bot/*.py
