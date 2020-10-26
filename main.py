@@ -1,3 +1,4 @@
+import tokens
 import discord
 
 client = discord.Client()
@@ -16,4 +17,4 @@ async def on_message(message):
     if message.content.startswith('Gongo') or message.content.startswith('gongo'):
         await message.channel.send('Hello!')
 
-client.run('')
+client.run(tokens.BOT_TOKEN)
