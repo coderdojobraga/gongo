@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+. scripts/helpers.sh
+
+source .venv/bin/activate
+
+python -m bot
