@@ -8,7 +8,7 @@ Please note we have a [Code of Conduct](CODE_OF_CONDUCT.md), please follow it in
 all your interactions with the project.
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
-## **Table of Contents**
+**Table of Contents**
 
 - [Fork the repository](#fork-the-repository)
 - [Clone the forked repository](#clone-the-forked-repository)
@@ -16,6 +16,7 @@ all your interactions with the project.
 - [Install the dependencies](#install-the-dependencies)
 - [Get Discord bot token](#get-discord-bot-token)
 - [Modify the `.env` file to contain your bot token.](#modify-the-env-file-to-contain-your-bot-token)
+- [Set up a Discord server to test the bot](#set-up-a-discord-server-to-test-the-bot)
 - [Create a branch to work on an issue or feature](#create-a-branch-to-work-on-an-issue-or-feature)
 - [Push changes](#push-changes)
 - [Create pull request](#create-pull-request)
