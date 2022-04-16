@@ -1,42 +1,82 @@
-"""Gongo.
-
-Usage:
-  Gongo (promove | p) <user> a <belt>
-
-"""
+from tabnanny import check
+from unicodedata import name
 import discord
-from docopt import docopt, DocoptExit
+from discord.ext import commands
+import traceback
 
 from bot import VERSION
 
+client = commands.Bot(command_prefix=commands.when_mentioned_or('$'),
+                      help_command=None,
+                      intents=discord.Intents.all(),
+                      case_insensitive=True)
 
-class Gongo(discord.Client):
-    async def on_ready(self):
-        print(f'We have logged in as {self.user}!')
+cinturoes = [
+    "Branco", "Amarelo", "Laranja", "Verde", "Azul", "Vermelho", "Roxo",
+    "Preto"
+]
 
-    async def on_message(self, message):
-        if message.author.bot:
-            return
 
-        if not message.content.lower().startswith('gongo'):
-            return
+class Ninja_data():
+    def __init__(self, guild, member):
+        self.guild = guild
+        self.member = member
 
-        if not "🛡️ Admin" in [role.name for role in message.author.roles]:
-            await message.channel.send(
-                "Não tens permissões para me usar. Tenta com sudo :clown:"
-            )
-            return
+    def current_belt(self):
+        for belt in self.member.roles:
+            for i in range(len(cinturoes) - 1):
+                if cinturoes[i] == belt.name:
+                    return belt
 
-        try:
-            arguments = docopt(__doc__,
-                               argv=message.content.split()[1:],
-                               help=False)
+    def next_belt(self):
+        for belt in self.member.roles:
+            for i in range(len(cinturoes) - 1):
+                if cinturoes[i] == belt.name:
+                    return get_role_from_name(self.guild, cinturoes[i + 1])
 
-            if arguments['promove'] or arguments['p']:
-                await message.channel.send(
-                    f'<@{message.author.id}> quer promover {arguments["<user>"]} a cinturão {arguments["<belt>"]} :tada:'
-                )
 
-        except DocoptExit:
-            await message.channel.send(
-                f'Olá! Esse comando não é válido! Vê isto: ```{__doc__}```')
+def get_role_from_name(guild, belt_name):
+    for role in guild.roles:
+        if role.name == belt_name:
+            return role
+
+
+@client.event
+async def on_ready():
+    print(f'We have logged in as {client.user}')
+
+
+@client.command()
+@commands.has_any_role("🛡️ Admin", "🏆 Champion", "🧑‍🏫 Mentores")
+async def promove(ctx, user, belt):
+    await ctx.send(f"<@{ctx.message.author.id}> quer promover {user} a {belt}")
+
+    mentions = ctx.message.raw_mentions  #List of id mentions in the command
+    guild = ctx.guild  #Guild of the command
+    member = guild.get_member(
+        mentions[0])  #gets the member of the mentioned id
+
+    ninja = Ninja_data(guild, member)
+
+    if belt == ninja.current_belt().name:
+
+        await ctx.send(
+            f'<@{ctx.message.author.id}> esse já é o cinturão atual do ninja {user}'
+        )
+
+    elif ninja.next_belt().name == belt:
+
+        await member.add_roles(guild.get_role(ninja.next_belt().id),
+                               reason=None,
+                               atomic=True)
+        await member.remove_roles(guild.get_role(ninja.current_belt().id),
+                                  reason=None,
+                                  atomic=True)
+
+        await ctx.send(f'{user} agora és cinturão {belt}')
+
+    else:
+        await ctx.send(
+            f'<@{ctx.message.author.id}> esse cinturão não é valido de se ser atribuido'
+        )
+
