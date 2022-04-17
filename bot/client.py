@@ -3,6 +3,7 @@ from unicodedata import name
 import discord
 from discord.ext import commands
 import traceback
+from enum import Enum, unique
 
 from bot import VERSION
 
@@ -11,10 +12,17 @@ client = commands.Bot(command_prefix=commands.when_mentioned_or('$'),
                       intents=discord.Intents.all(),
                       case_insensitive=True)
 
-cinturoes = [
-    "Branco", "Amarelo", "Laranja", "Verde", "Azul", "Vermelho", "Roxo",
-    "Preto"
-]
+
+@unique
+class Cinturoes(Enum):
+    Branco = 1
+    Amarelo = 2
+    Azul = 3
+    Verde = 4
+    Laranja = 5
+    Vermelho = 6
+    Roxo = 7
+    Preto = 8
 
 
 class Ninja_data():
@@ -24,15 +32,18 @@ class Ninja_data():
 
     def current_belt(self):
         for belt in self.member.roles:
-            for i in range(len(cinturoes) - 1):
-                if cinturoes[i] == belt.name:
+            for cinturao in Cinturoes:
+                if cinturao.name == belt.name:
                     return belt
 
     def next_belt(self):
         for belt in self.member.roles:
-            for i in range(len(cinturoes) - 1):
-                if cinturoes[i] == belt.name:
-                    return get_role_from_name(self.guild, cinturoes[i + 1])
+            for cinturao in Cinturoes:
+                if cinturao.name == belt.name:
+                    next_cinturao_value = cinturao.value + 1
+                    return get_role_from_name(
+                        self.guild,
+                        Cinturoes(next_cinturao_value).name)
 
 
 def get_role_from_name(guild, belt_name):
@@ -79,4 +90,3 @@ async def promove(ctx, user, belt):
         await ctx.send(
             f'<@{ctx.message.author.id}> esse cinturão não é valido de se ser atribuido'
         )
-
