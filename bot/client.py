@@ -1,8 +1,5 @@
-from tabnanny import check
-from unicodedata import name
 import discord
 from discord.ext import commands
-import traceback
 from enum import Enum, unique
 
 from bot import VERSION
@@ -69,7 +66,16 @@ async def promove(ctx, user, belt):
 
     ninja = Ninja_data(guild, member)
 
-    if belt == ninja.current_belt().name:
+    if belt == "Branco":
+        
+        cinturao = get_role_from_name(guild, "Branco").id
+        await member.add_roles(guild.get_role(cinturao),
+                               reason=None,
+                               atomic=True)
+        
+        await ctx.send(f'{user} agora és cinturão {belt}')
+
+    elif belt == ninja.current_belt().name:
 
         await ctx.send(
             f'<@{ctx.message.author.id}> esse já é o cinturão atual do ninja {user}'
