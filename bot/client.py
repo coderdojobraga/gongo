@@ -32,7 +32,7 @@ async def unload(ctx, extension):
         f'O cog {extension} foi desativado.'
     )
 
-for filename in os.listdir('./cogs'):
+for filename in os.listdir('bot/cogs'):
     if filename.endswith('.py'):
-        client.load_extension(f'cogs.{filename[:-3]}')
+        client.load_extension(f'bot.cogs.{filename[:-3]}')
 
