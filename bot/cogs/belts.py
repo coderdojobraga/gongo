@@ -18,31 +18,24 @@ class Ninja():
     def __init__(self, guild, member):
         self.guild = guild
         self.member = member
-        self.roles = [role for role in self.member.roles]
+        self.roles = [role for role in member.roles]
 
-    def current_belt(self) -> tuple:
-        highest_belt = Belts.Branco.name
+    def current_belt(self):
+        highest_belt = None
         for role in self.roles:
             for belt in Belts:
-                if belt.name == role:
-                    highest_belt = belt.name
+                if belt.name == role.name:
+                    highest_belt = belt
         
-        return (
-            highest_belt, 
-            self.get_role_from_name(
-                self.guild,
-                highest_belt
-            )
-        )
+        return highest_belt
 
     def next_belt(self):
-        value = self.current_belt()[0].value + 1
+        # Check if the maximum range has been exceeded 
+        value = self.current_belt().value + 1 if self.current_belt().value < 8 else 8
 
-        return self.get_role_from_name(
-            self.guild,
-            Belts(value).name
-        )
-
+        return Belts(value)
+        
+    @staticmethod
     def get_role_from_name(guild, belt):
         for role in guild.roles:
             if role.name == belt:
@@ -59,25 +52,42 @@ class BeltsAttributions(commands.Cog):
         mentions = ctx.message.raw_mentions
         guild = ctx.guild
         member = guild.get_member(mentions[0])
-
         ninja = Ninja(guild, member)
 
-        if belt == ninja.current_belt():
-            await ctx.reply(
-                f"Esse já é o teu cinturão do ninja {user}"
-            )
-        
-        elif belt == ninja.next_belt():
-            role = ninja.get_role_from_name(guild, belt)
+        if belt == "Branco" and ninja.current_belt() == None:
+            role = Ninja.get_role_from_name(guild, belt)
+            
             await member.add_roles(
                 guild.get_role(role.id),
                 reason = None,
                 atomic = True
             )
         
-        await ctx.send(
-            f'{user} agora és cinturão {belt} :tada:'
-        )
+            await ctx.send(
+                f'{user} agora és cinturão {belt} :tada:'
+            )
+        
+        elif belt == ninja.current_belt().name:
+            await ctx.reply(
+                f"Esse já é o cinturão do ninja {user}!"
+            )
+        
+        elif belt == ninja.next_belt().name:
+            role = Ninja.get_role_from_name(guild, belt)
+            await member.add_roles(
+                guild.get_role(role.id),
+                reason = None,
+                atomic = True
+            )
+        
+            await ctx.send(
+                f'{user} agora és cinturão {belt} :tada:'
+            )
+        
+        elif belt != ninja.next_belt().name:
+            await ctx.send(
+                f'{user} esse cinturão não é valido de se ser atribuido.'
+            )
 
 def setup(client):
     client.add_cog(BeltsAttributions(client))
