@@ -26,6 +26,15 @@ class FileHandler():
                 color
             )
 
+translator_to_emoji = {"Branco" : ":white_circle:",
+                       "Amarelo" : ":yellow_circle:",
+                       "Azul" : ":blue_circle:",
+                       "Verde" : ":green_circle:",
+                       "Laranja" : ":orange_circle:",
+                       "Vermelho" : ":red_circle:",
+                       "Roxo" : ":purple_circle:",
+                       "Preto" : ":black_circle:"}
+
 @unique
 class Belts(Enum):
     Branco = 1
@@ -93,9 +102,10 @@ class BeltsAttributions(commands.Cog):
             
             # Private message 
             file_handler = FileHandler(belt)
+            emoji = translator_to_emoji[belt]
             user = member
             embed = discord.Embed(
-                title = f":{belt}_circle: Parabéns, subiste de cinturão :tada:", 
+                title = f"{emoji} Parabéns, subiste de cinturão :tada:", 
                 description = file_handler.msg, 
                 color = file_handler.color
             )
@@ -122,9 +132,10 @@ class BeltsAttributions(commands.Cog):
             
             # Private message 
             file_handler = FileHandler(belt)       
+            emoji = translator_to_emoji[belt]
             user = member
             embed = discord.Embed(
-                title = ":{belt}_circle: Parabéns, subiste de cinturão :tada:", 
+                title = f"{emoji} Parabéns, subiste de cinturão :tada:", 
                 description = file_handler.msg, 
                 color = file_handler.color
             )

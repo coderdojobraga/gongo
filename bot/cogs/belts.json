@@ -25,7 +25,7 @@
         "objectives" : [
             "- Apresentar um projeto para o Dojo inteiro",
             "- Chegar a 5 Kyu em CodeWars",
-            "- Missão secreta nº2",
+            "- Missão secreta n.º2",
             "- Projeto em raspberry c/ apresentação"],
         "color" : "0ACD1B"
     },
@@ -34,7 +34,7 @@
             "- Projeto de Fuler",
             "- Com a ajuda de um mentor, montar um computador",
             "- Introduzir conceitos de bash",
-            "- Missão secreta nº4 (difícil)"],
+            "- Missão secreta n.º4 (difícil)"],
         "color" : "F48005"
     },
     "Vermelho" : {
