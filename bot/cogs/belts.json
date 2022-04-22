@@ -34,7 +34,7 @@
             "- Projeto de Fuler",
             "- Com a ajuda de um mentor, montar um computador",
             "- Introduzir conceitos de bash",
-            "- Missão secreta no4 (difícil)"],
+            "- Missão secreta nº4 (difícil)"],
         "color" : "F48005"
     },
     "Vermelho" : {
@@ -56,7 +56,7 @@
     },
     "Preto" : {
         "objectives" : [
-            "És um guru da programação!"
+            "Não tens, és um guru da programação!"
         ],
         "color" : "000000"
     }

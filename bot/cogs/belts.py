@@ -15,16 +15,16 @@ class FileHandler():
     
     def get_info(self):
         with open(self.file) as json_file:
-                data = json.load(json_file)
-                msg = f"Subiste para {self.belt} :clap:"
-                color = int(data[self.belt]["color"], 16)
-                for param in data[self.belt]["objectives"]:
-                    msg += '\n' + param
+            data = json.load(json_file)
+            msg = f"Subiste para {self.belt} :clap:\n\nPróximos objetivos:"
+            color = int(data[self.belt]["color"], 16)
+            for param in data[self.belt]["objectives"]:
+                msg += '\n' + param
 
-        return (
-            msg,
-            color
-        )
+            return (
+                msg,
+                color
+            )
 
 @unique
 class Belts(Enum):
@@ -95,7 +95,7 @@ class BeltsAttributions(commands.Cog):
             file_handler = FileHandler(belt)
             user = member
             embed = discord.Embed(
-                title = ":yin_yang: Parabéns, subiste de cinturão :tada:", 
+                title = f":{belt}_circle: Parabéns, subiste de cinturão :tada:", 
                 description = file_handler.msg, 
                 color = file_handler.color
             )
@@ -124,7 +124,7 @@ class BeltsAttributions(commands.Cog):
             file_handler = FileHandler(belt)       
             user = member
             embed = discord.Embed(
-                title = ":yin_yang: Parabéns, subiste de cinturão :tada:", 
+                title = ":{belt}_circle: Parabéns, subiste de cinturão :tada:", 
                 description = file_handler.msg, 
                 color = file_handler.color
             )
