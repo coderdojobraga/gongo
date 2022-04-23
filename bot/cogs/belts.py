@@ -1,7 +1,39 @@
 from enum import Enum, unique
 
+import json
+
 import discord
 from discord.ext import commands
+
+class FileHandler():
+    file = "bot/cogs/belts.json"
+
+    def __init__(self, belt):
+        self.belt = belt
+        self.msg = self.get_info()[0]
+        self.color = self.get_info()[1]
+    
+    def get_info(self):
+        with open(self.file) as json_file:
+            data = json.load(json_file)
+            msg = f"Subiste para {self.belt} :clap:\n\nPróximos objetivos:"
+            color = int(data[self.belt]["color"], 16)
+            for param in data[self.belt]["objectives"]:
+                msg += '\n' + param
+
+            return (
+                msg,
+                color
+            )
+
+translator_to_emoji = {"Branco" : ":white_circle:",
+                       "Amarelo" : ":yellow_circle:",
+                       "Azul" : ":blue_circle:",
+                       "Verde" : ":green_circle:",
+                       "Laranja" : ":orange_circle:",
+                       "Vermelho" : ":red_circle:",
+                       "Roxo" : ":purple_circle:",
+                       "Preto" : ":black_circle:"}
 
 @unique
 class Belts(Enum):
@@ -40,7 +72,7 @@ class Ninja():
         for role in guild.roles:
             if role.name == belt:
                 return role
-    
+
 class BeltsAttributions(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -62,11 +94,24 @@ class BeltsAttributions(commands.Cog):
                 reason = None,
                 atomic = True
             )
-        
+
+            # Public message
             await ctx.send(
                 f'{user} agora és cinturão {belt} :tada:'
             )
-        
+            
+            # Private message 
+            file_handler = FileHandler(belt)
+            emoji = translator_to_emoji[belt]
+            user = member
+            embed = discord.Embed(
+                title = f"{emoji} Parabéns, subiste de cinturão :tada:", 
+                description = file_handler.msg, 
+                color = file_handler.color
+            )
+            
+            await user.send(embed = embed)
+
         elif belt == ninja.current_belt().name:
             await ctx.reply(
                 f"Esse já é o cinturão do ninja {user}!"
@@ -79,11 +124,24 @@ class BeltsAttributions(commands.Cog):
                 reason = None,
                 atomic = True
             )
-        
+
+            # Public message
             await ctx.send(
                 f'{user} agora és cinturão {belt} :tada:'
             )
-        
+            
+            # Private message 
+            file_handler = FileHandler(belt)       
+            emoji = translator_to_emoji[belt]
+            user = member
+            embed = discord.Embed(
+                title = f"{emoji} Parabéns, subiste de cinturão :tada:", 
+                description = file_handler.msg, 
+                color = file_handler.color
+            )
+            
+            await user.send(embed = embed)
+
         elif belt != ninja.next_belt().name:
             await ctx.send(
                 f'{user} esse cinturão não é valido de se ser atribuido.'
