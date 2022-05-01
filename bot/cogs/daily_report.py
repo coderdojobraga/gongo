@@ -22,9 +22,8 @@ def is_under_24(attribution_timestamp, current_timestamp):
 class DailyReport(commands.Cog):
     filename = "bot/cogs/logs.json"
 
-    def __init__(self, client, hour):
+    def __init__(self, client):
         self.client = client
-        self.hour = hour
 
 
     @tasks.loop(seconds=10.0)

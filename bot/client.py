@@ -17,7 +17,7 @@ client = commands.Bot(
 async def on_ready():
     print(f'We have logged in as {client.user}')
 
-    DailyReport(client, 18).report.start()
+    DailyReport(client).report.start()
     print("The task has been loaded")
 
 @client.command()
