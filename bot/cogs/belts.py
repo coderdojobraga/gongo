@@ -1,9 +1,12 @@
 from enum import Enum, unique
-
+from datetime import date
 import json
+
+from bot.cogs.logs import log_attribution
 
 import discord
 from discord.ext import commands
+
 
 class FileHandler():
     file = "bot/cogs/belts.json"
@@ -12,7 +15,7 @@ class FileHandler():
         self.belt = belt
         self.msg = self.get_info()[0]
         self.color = self.get_info()[1]
-    
+
     def get_info(self):
         with open(self.file) as json_file:
             data = json.load(json_file)
@@ -111,6 +114,7 @@ class BeltsAttributions(commands.Cog):
             )
             
             await user.send(embed = embed)
+            log_attribution(member, ctx.author,  belt)
 
         elif belt == ninja.current_belt().name:
             await ctx.reply(
@@ -141,7 +145,8 @@ class BeltsAttributions(commands.Cog):
             )
             
             await user.send(embed = embed)
-
+            log_attribution(member, ctx.author,  belt)
+            
         elif belt != ninja.next_belt().name:
             await ctx.send(
                 f'{user} esse cinturão não é valido de se ser atribuido.'
