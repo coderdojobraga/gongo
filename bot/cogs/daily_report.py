@@ -4,7 +4,7 @@ from discord.ext import commands, tasks
 import json
 
 import time
-from datetime import date
+from datetime import datetime
 
 from bot.settings import GUILD_ID
 from bot.cogs.belts import Ninja
@@ -50,8 +50,9 @@ class DailyReport(commands.Cog):
         # The message is only sent in case of daily_log not being empty
         msg = ""
         if daily_logs != []:
+
             for info in daily_logs:
-                msg += f'**{info["mentor_id"]}** atribuiu a **{info["ninja_id"]}** o cinturão {info["belt_attributed"]} \n'
+                msg += f'**{info["mentor_id"]}** atribuiu a **{info["ninja_id"]}** o cinturão {info["belt_attributed"]} - {datetime.fromtimestamp(int(info["timestamp"]))}\n'
 
             embed = discord.Embed(
                 title = ":scroll: Histórico de atribuições",

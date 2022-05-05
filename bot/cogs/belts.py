@@ -21,7 +21,7 @@ class FileHandler():
             data = json.load(json_file)
             msg = f"Subiste para {self.belt} :clap:\n\nPróximos objetivos:"
             color = int(data[self.belt]["color"], 16)
-            for param in data[self.belt]["objectives"]:
+            for param in data[self.belt]["goals"]:
                 msg += '\n' + param
 
             return (

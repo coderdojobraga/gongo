@@ -1,6 +1,6 @@
 {
     "Branco": {
-        "objectives" : [
+        "goals" : [
             "- Finalizar um projeto sozinho",
             "- Apresentar o teu projeto a outros ninjas",
             "- Saber o nome de 5 ninjas e 2 mentores",
@@ -8,13 +8,13 @@
         "color" : "e9e9e9"
         },
     "Amarelo" : {
-        "objectives" : [
+        "goals" : [
             "- Estar presente em 4 sessões", 
             "- Fazer um projeto e apresentar à mesa"],
         "color" : "fcd767"
     },
     "Azul" : {
-        "objectives" : [
+        "goals" : [
             "- Ajudar como mentor numa sessão",
             "- Saber o nome de 7 ninjas e 4 mentores",
             "- Conseguir completar o código que os mentores têm preparado para ti",
@@ -22,7 +22,7 @@
         "color" : "7f9acd"
         },
     "Verde" : {
-        "objectives" : [
+        "goals" : [
             "- Apresentar um projeto para o Dojo inteiro",
             "- Chegar a 5 Kyu em CodeWars",
             "- Missão secreta n.º2",
@@ -30,7 +30,7 @@
         "color" : "09a777"
     },
     "Laranja" : {
-        "objectives" : [
+        "goals" : [
             "- Projeto de Fuler",
             "- Com a ajuda de um mentor, montar um computador",
             "- Introduzir conceitos de bash",
@@ -38,14 +38,14 @@
         "color" : "f79520"
     },
     "Vermelho" : {
-        "objectives" : [
+        "goals" : [
             "- Ser mentor 1 sessão",
             "- Demonstração de conhecimento do paradigma POO",
             "- Ter um projeto que use API externa"],
         "color" : "ec2027"
     },
     "Roxo" : {
-        "objectives" : [
+        "goals" : [
             "- Conceitos básicos g7",
             "- Criar uma missão secreta",
             "- Ser mentor 2 sessões",
@@ -55,7 +55,7 @@
         "color" : "6f5977"
     },
     "Preto" : {
-        "objectives" : [
+        "goals" : [
             "Não tens, és um guru da programação!"
         ],
         "color" : "383b3f"
