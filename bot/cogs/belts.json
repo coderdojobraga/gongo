@@ -5,13 +5,13 @@
             "- Apresentar o teu projeto a outros ninjas",
             "- Saber o nome de 5 ninjas e 2 mentores",
             "- Completar o Lightbot"],
-        "color" : "FFFFFF"
+        "color" : "e9e9e9"
         },
     "Amarelo" : {
         "objectives" : [
             "- Estar presente em 4 sessões", 
             "- Fazer um projeto e apresentar à mesa"],
-        "color" : "F7E129"
+        "color" : "fcd767"
     },
     "Azul" : {
         "objectives" : [
@@ -19,7 +19,7 @@
             "- Saber o nome de 7 ninjas e 4 mentores",
             "- Conseguir completar o código que os mentores têm preparado para ti",
             "- Fazer um site"],
-        "color" : "296DF7"
+        "color" : "7f9acd"
         },
     "Verde" : {
         "objectives" : [
@@ -27,7 +27,7 @@
             "- Chegar a 5 Kyu em CodeWars",
             "- Missão secreta n.º2",
             "- Projeto em raspberry c/ apresentação"],
-        "color" : "0ACD1B"
+        "color" : "09a777"
     },
     "Laranja" : {
         "objectives" : [
@@ -35,14 +35,14 @@
             "- Com a ajuda de um mentor, montar um computador",
             "- Introduzir conceitos de bash",
             "- Missão secreta n.º4 (difícil)"],
-        "color" : "F48005"
+        "color" : "f79520"
     },
     "Vermelho" : {
         "objectives" : [
             "- Ser mentor 1 sessão",
             "- Demonstração de conhecimento do paradigma POO",
             "- Ter um projeto que use API externa"],
-        "color" : "F60909"
+        "color" : "ec2027"
     },
     "Roxo" : {
         "objectives" : [
@@ -52,12 +52,12 @@
             "- Ter conta e saber usar o Slack",
             "- Criar um Bot com uma API externa",
             "- Última missão secreta"],
-        "color" : "A709F6"
+        "color" : "6f5977"
     },
     "Preto" : {
         "objectives" : [
             "Não tens, és um guru da programação!"
         ],
-        "color" : "000000"
+        "color" : "383b3f"
     }
 }
