@@ -1,4 +1,7 @@
 import os
+
+import logging
+
 from bot.cogs.daily_report import DailyReport
 
 import discord
@@ -13,12 +16,18 @@ client = commands.Bot(
     case_insensitive = True
 )
 
+logger = logging.getLogger('discord')
+logger.setLevel(logging.INFO)
+handler = logging.FileHandler(filename='bot/discord.log', encoding='utf-8', mode='w')
+handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+logger.addHandler(handler)
+
 @client.event
 async def on_ready():
-    print(f'We have logged in as {client.user}')
+    logger.info("The bot was logged in")
 
     DailyReport(client).report.start()
-    print("The task has been loaded")
+    logger.info("The task has been loaded")
 
 @client.command()
 async def load(ctx, extension):
