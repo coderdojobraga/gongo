@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
-. scripts/helpers.sh
+set -Eeuo pipefail
+
+BASE_DIR=$(dirname "${BASH_SOURCE[0]:-$0}")
+cd "${BASE_DIR}/.." || exit 127
+
+# shellcheck source=../scripts/logging.sh
+. scripts/logging.sh
+# shellcheck source=../scripts/utils.sh
+. scripts/utils.sh
 
 source .venv/bin/activate
 
-python -m bot
+python3 -m bot
