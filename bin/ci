@@ -10,6 +10,8 @@ cd "${BASE_DIR}/.." || exit 127
 # shellcheck source=../scripts/utils.sh
 . scripts/utils.sh
 
+log_info "Loading virtual environment..."
 source .venv/bin/activate
 
-python3 -m bot
+log_info "Running CI pipeline..."
+python3 -m pre_commit run --all-files
