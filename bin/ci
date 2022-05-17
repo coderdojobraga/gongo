@@ -13,8 +13,5 @@ cd "${BASE_DIR}/.." || exit 127
 log_info "Loading virtual environment..."
 source .venv/bin/activate
 
-log_info "Sorting python imports..."
-python3 -m isort .
-
-log_info "Formatting python code..."
-python3 -m black .
+log_info "Running CI pipeline..."
+python3 -m pre_commit run --all-files

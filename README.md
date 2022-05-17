@@ -34,6 +34,12 @@ Run the bot.
 bin/server
 ```
 
+Run the CI pipeline to ensure code quality and consistency across all repo.
+
+```
+bin/ci
+```
+
 Format the code accordingly to common guide lines.
 
 ```

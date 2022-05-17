@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 RED=$(tput setaf 1)
 ORANGE=$(tput setaf 3)
 GREEN=$(tput setaf 2)
