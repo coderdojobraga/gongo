@@ -7,7 +7,7 @@ import time
 from datetime import datetime
 
 from bot.settings import GUILD_ID
-from bot.cogs.belts import Ninja
+from bot.cogs.belts import get_role_from_name
 
 
 # Function to determin if a belt attribution was made under 24 hours
@@ -31,8 +31,8 @@ class DailyReport(commands.Cog):
         daily_logs = []
 
         guild = self.client.get_guild(GUILD_ID)                     # guild the bot is operating in 
-        admin_role = Ninja.get_role_from_name(guild, "🛡️ Admin")    # guild  Admin role
-        admin_members = admin_role.members                         # list of admins in the server
+        admin_role = get_role_from_name(guild, "🛡️ Admin")          # guild  Admin role
+        admin_members = admin_role.members                          # list of admins in the server
 
         with open(self.filename, "r") as json_file:
             logs_list = json.load(json_file)

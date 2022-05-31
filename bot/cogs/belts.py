@@ -9,14 +9,36 @@ from discord.ext import commands
 
 
 class FileHandler():
+    '''
+    This is a class to handle a json file.
+
+    Attributes:
+        file (string): The path to the json file being handled.
+    '''
+
     file = "bot/cogs/belts.json"
 
     def __init__(self, belt):
+        '''
+        The constructor for the FileHandler class.
+
+        Parameters:
+            belt (string): String that indicates the belt to get info from.
+            msg (string): Variable that contains the message of the respective belt.
+            color (int): Color code to be displayed in discord embed.
+        '''
         self.belt = belt
         self.msg = self.get_info()[0]
         self.color = self.get_info()[1]
 
     def get_info(self):
+        '''
+        The function to get the info from the belts.json file.
+
+        Returns:
+            msg (string): Variable that contains the message of the respective belt.
+            color (int): Color code to be displayed in discord embed.
+        '''
         with open(self.file) as json_file:
             data = json.load(json_file)
             msg = f"Subiste para {self.belt} :clap:\n\nPróximos objetivos:"
@@ -49,6 +71,11 @@ class Belts(Enum):
     Roxo = 7
     Preto = 8
 
+def get_role_from_name(guild, belt):
+    for role in guild.roles:
+        if role.name == belt:
+            return role
+
 class Ninja():
     def __init__(self, guild, member):
         self.guild = guild
@@ -70,11 +97,6 @@ class Ninja():
 
         return Belts(value)
         
-    @staticmethod
-    def get_role_from_name(guild, belt):
-        for role in guild.roles:
-            if role.name == belt:
-                return role
 
 class BeltsAttributions(commands.Cog):
     def __init__(self, client):
@@ -90,7 +112,7 @@ class BeltsAttributions(commands.Cog):
         ninja = Ninja(guild, member)
 
         if belt == "Branco" and ninja.current_belt() == None:
-            role = Ninja.get_role_from_name(guild, belt)
+            role = get_role_from_name(guild, belt)
             
             await member.add_roles(
                 guild.get_role(role.id),
@@ -122,7 +144,7 @@ class BeltsAttributions(commands.Cog):
             )
         
         elif belt == ninja.next_belt().name:
-            role = Ninja.get_role_from_name(guild, belt)
+            role = get_role_from_name(guild, belt)
             await member.add_roles(
                 guild.get_role(role.id),
                 reason = None,
@@ -133,20 +155,20 @@ class BeltsAttributions(commands.Cog):
             await ctx.send(
                 f'{user} agora és cinturão {belt} :tada:'
             )
-            
+
             # Private message 
-            file_handler = FileHandler(belt)       
+            file_handler = FileHandler(belt)
             emoji = translator_to_emoji[belt]
             user = member
             embed = discord.Embed(
                 title = f"{emoji} Parabéns, subiste de cinturão :tada:", 
-                description = file_handler.msg, 
+                description = file_handler.msg,
                 color = file_handler.color
             )
-            
+
             await user.send(embed = embed)
             log_attribution(member, ctx.author,  belt)
-            
+
         elif belt != ninja.next_belt().name:
             await ctx.send(
                 f'{user} esse cinturão não é valido de se ser atribuido.'

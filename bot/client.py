@@ -24,13 +24,23 @@ logger.addHandler(handler)
 
 @client.event
 async def on_ready():
-    logger.info("The bot was logged in")
+    '''Client event that run when the program is ready.'''
 
+    logger.info("The bot was logged in")
     DailyReport(client).report.start()
     logger.info("The task has been loaded")
 
 @client.command()
 async def load(ctx, extension):
+    '''
+    Command to load an extension.
+    
+    Parameters:
+    ctx (discord.ext.commands.Context): Represents the context in which a command is being invoked under.
+    extension (bot.cogs.[extension]): Represents the functionality to be loaded.
+
+    '''
+    
     client.load_extension(f'bot.cogs.{extension}')
     await ctx.send(
         f'O cog {extension} foi ativado.'
@@ -38,6 +48,14 @@ async def load(ctx, extension):
 
 @client.command()
 async def unload(ctx, extension):
+    '''
+    Command to unload an extension.
+    
+    Parameters:
+    ctx (discord.ext.commands.Context): Represents the context in which a command is being invoked under.
+    extension (bot.cogs.[extension]): Represents the functionality to be unloaded.
+
+    '''
     client.unload_extension(f'bot.cogs.{extension}')
 
     await ctx.send(
