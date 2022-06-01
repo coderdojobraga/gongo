@@ -13,7 +13,7 @@ from bot.cogs.belts import get_role_from_name
 # Function to determin if a belt attribution was made under 24 hours
 def is_under_24(attribution_timestamp, current_timestamp):
     one_day_seconds = 24 * 60 * 60
-    if (int(current_timestamp) - int(attribution_timestamp) <= one_day_seconds):
+    return (int(current_timestamp) - int(attribution_timestamp) <= one_day_seconds)
         return True
     else:
         return False
