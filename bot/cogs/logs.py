@@ -3,7 +3,9 @@ import json
 import time
 
 
-def log_attribution(ninja, mentor, belt):
+def log_attribution(ninja, mentor, belt) -> None:
+    ''' This function logs the belt attribution of a Ninja.'''
+
     filename = "bot/cogs/logs.json"
 
     with open(filename, "r") as json_file:

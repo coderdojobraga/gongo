@@ -16,6 +16,7 @@ client = commands.Bot(
     case_insensitive = True
 )
 
+# Logging setup
 logger = logging.getLogger('discord')
 logger.setLevel(logging.INFO)
 handler = logging.FileHandler(filename='bot/discord.log', encoding='utf-8', mode='w')
@@ -31,31 +32,18 @@ async def on_ready():
     logger.info("The task has been loaded")
 
 @client.command()
-async def load(ctx, extension):
-    '''
-    Command to load an extension.
-    
-    Parameters:
-    ctx (discord.ext.commands.Context): Represents the context in which a command is being invoked under.
-    extension (bot.cogs.[extension]): Represents the functionality to be loaded.
+async def load(ctx: discord.ext.commands.Context, extension: str):
+    '''Command to load an extension.'''
 
-    '''
-    
     client.load_extension(f'bot.cogs.{extension}')
     await ctx.send(
         f'O cog {extension} foi ativado.'
     )
 
 @client.command()
-async def unload(ctx, extension):
-    '''
-    Command to unload an extension.
-    
-    Parameters:
-    ctx (discord.ext.commands.Context): Represents the context in which a command is being invoked under.
-    extension (bot.cogs.[extension]): Represents the functionality to be unloaded.
+async def unload(ctx: discord.ext.commands.Context, extension: str):
+    '''Command to unload an extension.'''
 
-    '''
     client.unload_extension(f'bot.cogs.{extension}')
 
     await ctx.send(

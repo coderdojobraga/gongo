@@ -11,23 +11,31 @@ from bot.cogs.belts import get_role_from_name
 
 
 # Function to determin if a belt attribution was made under 24 hours
-def is_under_24(attribution_timestamp, current_timestamp):
+def is_under_24(attribution_timestamp: int, current_timestamp: int) -> bool:
+    ''' This function determines if an attribution was made under 24 hours '''
+
     one_day_seconds = 24 * 60 * 60
-    return (int(current_timestamp) - int(attribution_timestamp) <= one_day_seconds)
-        return True
-    else:
-        return False
+    return int(current_timestamp) - int(attribution_timestamp) <= one_day_seconds
 
 
 class DailyReport(commands.Cog):
+    ''' 
+    This cog is responsible for the daily report. 
+    
+    Attributes:
+        filename (str): The name of the file that contains the daily report.
+    '''
+
     filename = "bot/cogs/logs.json"
 
-    def __init__(self, client):
+    def __init__(self, client: commands.Bot):
         self.client = client
 
 
     @tasks.loop(seconds=10.0)
     async def report(self):
+        ''' This function runs every 60 minutes to check if a report is needed '''
+
         daily_logs = []
 
         guild = self.client.get_guild(GUILD_ID)                     # guild the bot is operating in 
@@ -62,5 +70,5 @@ class DailyReport(commands.Cog):
                 await member.send(embed=embed)
 
 
-def setup(client):
+def setup(client: commands.Bot) -> None:
     client.add_cog(DailyReport(client))

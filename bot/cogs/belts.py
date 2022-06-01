@@ -18,20 +18,18 @@ class FileHandler():
 
     file = "bot/cogs/belts.json"
 
-    def __init__(self, belt):
+    def __init__(self: str, belt: str):
         '''
         The constructor for the FileHandler class.
 
         Parameters:
-            belt (string): String that indicates the belt to get info from.
-            msg (string): Variable that contains the message of the respective belt.
             color (int): Color code to be displayed in discord embed.
         '''
         self.belt = belt
         self.msg = self.get_info()[0]
         self.color = self.get_info()[1]
 
-    def get_info(self):
+    def get_info(self) -> tuple:
         '''
         The function to get the info from the belts.json file.
 
@@ -71,18 +69,24 @@ class Belts(Enum):
     Roxo = 7
     Preto = 8
 
-def get_role_from_name(guild, belt):
+def get_role_from_name(guild: discord.Guild, belt: str) -> discord.Role:
+    ''' This function returns the role of the respective belt. '''
+
     for role in guild.roles:
         if role.name == belt:
             return role
 
 class Ninja():
-    def __init__(self, guild, member):
+    ''' This is a class to get information about a specific ninja. '''
+
+    def __init__(self, guild: discord.Guild, member: discord.Member):
         self.guild = guild
         self.member = member
         self.roles = [role for role in member.roles]
 
-    def current_belt(self):
+    def current_belt(self) -> Belts:
+        ''' This function returns the current belt of the ninja. '''
+
         highest_belt = None
         for role in self.roles:
             for belt in Belts:
@@ -91,20 +95,24 @@ class Ninja():
         
         return highest_belt
 
-    def next_belt(self):
-        # Check if the maximum range has been exceeded 
+    def next_belt(self) -> Belts:
+        ''' This function returns the next belt of the ninja. '''
+
         value = self.current_belt().value + 1 if self.current_belt().value < 8 else 8
 
         return Belts(value)
         
 
 class BeltsAttributions(commands.Cog):
-    def __init__(self, client):
+    ''' This is a class to handle the attribution of belts. '''
+
+    def __init__(self, client: commands.Bot):
         self.client = client
 
     @commands.command(name = 'promove')
     @commands.has_any_role("🛡️ Admin", "🏆 Champion", "🧑‍🏫 Mentores")
-    async def promove(self, ctx, user, belt):
+    async def promove(self, ctx: discord.ext.commands.Context, user: str , belt: str) -> None:
+        ''' This function promotes a user to the next belt. '''
 
         mentions = ctx.message.raw_mentions
         guild = ctx.guild
@@ -125,7 +133,7 @@ class BeltsAttributions(commands.Cog):
                 f'{user} agora és cinturão {belt} :tada:'
             )
             
-            # Private message 
+            # Private message
             file_handler = FileHandler(belt)
             emoji = translator_to_emoji[belt]
             user = member
@@ -167,12 +175,12 @@ class BeltsAttributions(commands.Cog):
             )
 
             await user.send(embed = embed)
-            log_attribution(member, ctx.author,  belt)
+            log_attribution(member, ctx.author, belt)
 
         elif belt != ninja.next_belt().name:
             await ctx.send(
                 f'{user} esse cinturão não é valido de se ser atribuido.'
             )
 
-def setup(client):
+def setup(client: commands.Bot) -> None:
     client.add_cog(BeltsAttributions(client))
