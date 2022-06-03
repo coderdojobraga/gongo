@@ -1,11 +1,26 @@
 from enum import Enum, unique
 from datetime import date
+import time
+
 import json
 
-from bot.cogs.logs import log_attribution
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+from bot.cogs.logs import log_attribution, AttributionLogs, Base
+from bot.cogs.constants import translator_to_emoji, Belts, get_role_from_name
 
 import discord
 from discord.ext import commands
+
+# sqlalchemy setup
+engine = create_engine('sqlite:///daily_logs.db')
+
+Base.metadata.bind = engine
+
+DBSession = sessionmaker(bind=engine)
+
+session = DBSession()
 
 
 class FileHandler():
@@ -49,32 +64,7 @@ class FileHandler():
                 color
             )
 
-translator_to_emoji = {"Branco" : ":white_circle:",
-                       "Amarelo" : ":yellow_circle:",
-                       "Azul" : ":blue_circle:",
-                       "Verde" : ":green_circle:",
-                       "Laranja" : ":orange_circle:",
-                       "Vermelho" : ":red_circle:",
-                       "Roxo" : ":purple_circle:",
-                       "Preto" : ":black_circle:"}
 
-@unique
-class Belts(Enum):
-    Branco = 1
-    Amarelo = 2
-    Azul = 3
-    Verde = 4
-    Laranja = 5
-    Vermelho = 6
-    Roxo = 7
-    Preto = 8
-
-def get_role_from_name(guild: discord.Guild, belt: str) -> discord.Role:
-    ''' This function returns the role of the respective belt. '''
-
-    for role in guild.roles:
-        if role.name == belt:
-            return role
 
 class Ninja():
     ''' This is a class to get information about a specific ninja. '''
@@ -146,6 +136,15 @@ class BeltsAttributions(commands.Cog):
             await user.send(embed = embed)
             log_attribution(member, ctx.author,  belt)
 
+            # Adding the log to the database 
+            new_log = AttributionLogs(ninja_id = str(member), 
+                                        mentor_id = str(ctx.author),
+                                        belt_attributed = belt,
+                                        timestamp = int(time.time()))
+            
+            session.add(new_log)
+            session.commit()
+
         elif belt == ninja.current_belt().name:
             await ctx.reply(
                 f"Esse já é o cinturão do ninja {user}!"
@@ -176,6 +175,16 @@ class BeltsAttributions(commands.Cog):
 
             await user.send(embed = embed)
             log_attribution(member, ctx.author, belt)
+            
+
+            # Adding the log to the database 
+            new_log = AttributionLogs(ninja_id = str(member), 
+                                        mentor_id = str(ctx.author),
+                                        belt_attributed = belt,
+                                        timestamp = int(time.time()))
+            
+            session.add(new_log)
+            session.commit()
 
         elif belt != ninja.next_belt().name:
             await ctx.send(

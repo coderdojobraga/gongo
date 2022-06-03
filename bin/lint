@@ -5,4 +5,4 @@
 source .venv/bin/activate
 
 pylint bot/*.py
-mypy --follow-imports=skip bot/*.py
+python3 -m mypy --follow-imports=skip --install-types bot/*.py
