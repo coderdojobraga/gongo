@@ -32,11 +32,6 @@ Base.metadata.create_all(engine)
 def log_attribution(ninja, mentor, belt) -> None:
     ''' This function logs the belt attribution of a Ninja.'''
 
-    filename = "bot/cogs/logs.json"
-
-    with open(filename, "r") as json_file:
-        data_logs = json.load(json_file)
-
     timestamp = int(time.time())
     entry_logs = {
             "ninja_id": f"{ninja}",

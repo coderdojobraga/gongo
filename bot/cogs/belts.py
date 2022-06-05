@@ -134,7 +134,6 @@ class BeltsAttributions(commands.Cog):
             )
             
             await user.send(embed = embed)
-            log_attribution(member, ctx.author,  belt)
 
             # Adding the log to the database 
             new_log = AttributionLogs(ninja_id = str(member), 
@@ -174,7 +173,6 @@ class BeltsAttributions(commands.Cog):
             )
 
             await user.send(embed = embed)
-            log_attribution(member, ctx.author, belt)
             
 
             # Adding the log to the database 
