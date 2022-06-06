@@ -1,3 +1,4 @@
+import json
 from enum import Enum, unique
 from datetime import date
 import time
@@ -82,7 +83,7 @@ class Ninja():
             for belt in Belts:
                 if belt.name == role.name:
                     highest_belt = belt
-        
+
         return highest_belt
 
     def next_belt(self) -> Belts:
@@ -99,7 +100,7 @@ class BeltsAttributions(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
-    @commands.command(name = 'promove')
+    @commands.command(name="promove")
     @commands.has_any_role("🛡️ Admin", "🏆 Champion", "🧑‍🏫 Mentores")
     async def promove(self, ctx: discord.ext.commands.Context, user: str , belt: str) -> None:
         ''' This function promotes a user to the next belt. '''
@@ -145,10 +146,8 @@ class BeltsAttributions(commands.Cog):
             session.commit()
 
         elif belt == ninja.current_belt().name:
-            await ctx.reply(
-                f"Esse já é o cinturão do ninja {user}!"
-            )
-        
+            await ctx.reply(f"Esse já é o cinturão do ninja {user}!")
+
         elif belt == ninja.next_belt().name:
             role = get_role_from_name(guild, belt)
             await member.add_roles(
@@ -185,9 +184,8 @@ class BeltsAttributions(commands.Cog):
             session.commit()
 
         elif belt != ninja.next_belt().name:
-            await ctx.send(
-                f'{user} esse cinturão não é valido de se ser atribuido.'
-            )
+            await ctx.send(f"{user} esse cinturão não é valido de se ser atribuido.")
+
 
 def setup(client: commands.Bot) -> None:
     client.add_cog(BeltsAttributions(client))

@@ -25,6 +25,7 @@ handler.setFormatter(
 logger.addHandler(handler)
 
 
+
 @client.event
 async def on_ready():
     '''Client event that run when the program is ready.'''
@@ -53,6 +54,3 @@ async def unload(ctx: discord.ext.commands.Context, extension: str):
 
 client.load_extension('bot.cogs.belts')
 client.load_extension('bot.cogs.daily_report')
-# for filename in os.listdir('bot/cogs'):
-# if filename.endswith('.py'):
-#     # client.load_extension(f'bot.cogs.{filename[:-3]}')
