@@ -1,20 +1,17 @@
 import json
-
 import os
 import sys
 import time
 
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from sqlalchemy import create_engine
-
-
 
 Base = declarative_base()
 
+
 class AttributionLogs(Base):
-    __tablename__ = 'logs'
+    __tablename__ = "logs"
 
     id = Column(Integer, primary_key=True)
 
@@ -24,29 +21,21 @@ class AttributionLogs(Base):
     timestamp = Column(Integer, nullable=False)
 
 
-engine = create_engine('sqlite:///daily_logs.db')
+engine = create_engine("sqlite:///daily_logs.db")
 Base.metadata.create_all(engine)
 
 
-
 def log_attribution(ninja, mentor, belt) -> None:
-    ''' This function logs the belt attribution of a Ninja.'''
+    """This function logs the belt attribution of a Ninja."""
 
     timestamp = int(time.time())
     entry_logs = {
-            "ninja_id": f"{ninja}",
-            "mentor_id": f"{mentor}",
-            "belt_attributed" : f"{belt}",
-            "timestamp": f"{timestamp}"
-        }
-
-    data_logs.append(entry_logs)
-    with open(filename, 'w') as json_file:
-        json.dump(data_logs, json_file,
-                indent=4,
-                separators=(',', ': '))
+        "ninja_id": f"{ninja}",
+        "mentor_id": f"{mentor}",
+        "belt_attributed": f"{belt}",
+        "timestamp": f"{timestamp}",
+    }
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     Base.metadata.create_all(engine)
-
