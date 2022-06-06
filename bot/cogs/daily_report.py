@@ -10,7 +10,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from bot.cogs.logs import log_attribution, AttributionLogs, Base
-from bot.settings import GUILD_ID, GONGO_CHANNEL_ID
+from bot.settings import GONGO_CHANNEL_ID
 from bot.cogs.belts import get_role_from_name
 
 # SQLAlchemy setup
@@ -57,7 +57,7 @@ class DailyReport(commands.Cog):
                 description = msg
             )
 
-            gongo_channel = self.client.get_channel(GONGO_CHANNEL_ID)
+            gongo_channel = self.client.get_channel(int(GONGO_CHANNEL_ID))
             await gongo_channel.send(embed=embed)
 
 def setup(client: commands.Bot) -> None:
