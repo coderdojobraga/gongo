@@ -41,7 +41,7 @@ class DailyReport(commands.Cog):
         query_log = (
             session.query(AttributionLogs)
             .filter(
-                AttributionLogs.timestamp > (current_timestamp - previous_day_timestamp)
+                AttributionLogs.timestamp > previous_day_timestamp
             )
             .all()
         )
