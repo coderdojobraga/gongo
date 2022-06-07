@@ -40,9 +40,7 @@ class DailyReport(commands.Cog):
         previous_day_timestamp = current_timestamp - (24 * 60 * 60)
         query_log = (
             session.query(AttributionLogs)
-            .filter(
-                AttributionLogs.timestamp > previous_day_timestamp
-            )
+            .filter(AttributionLogs.timestamp > previous_day_timestamp)
             .all()
         )
 
