@@ -8,11 +8,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from bot.cogs.belts import get_role_from_name
-from bot.cogs.logs import AttributionLogs, Base, log_attribution
+from bot.cogs.utils.logs import AttributionLogs, Base, log_attribution
 from bot.settings import GONGO_CHANNEL_ID
 
 # SQLAlchemy setup
-engine = create_engine("sqlite:///daily_logs.db")
+engine = create_engine("sqlite:///bot/data/daily_logs.db")
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
