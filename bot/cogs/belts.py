@@ -8,11 +8,11 @@ from discord.ext import commands
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from bot.cogs.constants import Belts, get_role_from_name, translator_to_emoji
-from bot.cogs.logs import AttributionLogs, Base, log_attribution
+from bot.cogs.utils.constants import *
+from bot.cogs.utils.logs import AttributionLogs, Base, log_attribution
 
 # sqlalchemy setup
-engine = create_engine("sqlite:///daily_logs.db")
+engine = create_engine("sqlite:///bot/data/daily_logs.db")
 
 Base.metadata.bind = engine
 
@@ -29,7 +29,7 @@ class FileHandler:
         file (string): The path to the json file being handled.
     """
 
-    file = "bot/cogs/belts.json"
+    file = "bot/data/belts.json"
 
     def __init__(self: str, belt: str):
         """

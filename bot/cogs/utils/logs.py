@@ -21,7 +21,7 @@ class AttributionLogs(Base):
     timestamp = Column(Integer, nullable=False)
 
 
-engine = create_engine("sqlite:///daily_logs.db")
+engine = create_engine("sqlite:///bot/data/daily_logs.db")
 Base.metadata.create_all(engine)
 
 
