@@ -73,21 +73,20 @@ class Ninja:
 
         highest_belt = None
         for role in self.roles:
-            for index in range(0, 7):
-                belt = list_roles[index]
-                if belt["name"] == role.name:
+            for belt in Belts:
+                if belt.name == role.name:
                     highest_belt = belt
 
         return highest_belt
 
-    def next_belt(self):
+        return highest_belt
+
+    def next_belt(self) -> Belts:
         """This function returns the next belt of the ninja."""
 
-        value = (
-            self.current_belt()["value"] + 1 if self.current_belt()["value"] < 8 else 8
-        )
+        value = self.current_belt().value + 1 if self.current_belt().value < 8 else 8
 
-        return list_roles[value - 1]
+        return Belts(value)
 
 
 class BeltsAttributions(commands.Cog):
@@ -97,7 +96,9 @@ class BeltsAttributions(commands.Cog):
         self.client = client
 
     @commands.command(name="promove")
-    @commands.has_any_role(ADMIN["name"], CHAMPION["name"], MENTOR["name"])
+    @commands.has_any_role(
+        Roles["ADMIN"].name, Roles["CHAMPION"].name, Roles["MENTOR"].name
+    )
     async def promove(
         self, ctx: discord.ext.commands.Context, user: str, belt: str
     ) -> None:
@@ -139,10 +140,10 @@ class BeltsAttributions(commands.Cog):
             session.add(new_log)
             session.commit()
 
-        elif belt == ninja.current_belt()["name"]:
+        elif belt == ninja.current_belt().name:
             await ctx.reply(f"Esse já é o cinturão do ninja {user}!")
 
-        elif belt == ninja.next_belt()["name"]:
+        elif belt == ninja.next_belt().name:
             role = get_role_from_name(guild, belt)
             await member.add_roles(guild.get_role(role.id), reason=None, atomic=True)
 
@@ -172,7 +173,7 @@ class BeltsAttributions(commands.Cog):
             session.add(new_log)
             session.commit()
 
-        elif belt != ninja.next_belt()["name"]:
+        elif belt != ninja.next_belt().name:
             await ctx.send(f"{user} esse cinturão não é valido de se ser atribuido.")
 
 
