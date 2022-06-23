@@ -66,9 +66,9 @@ class Ninja:
     def __init__(self, guild: discord.Guild, member: discord.Member):
         self.guild = guild
         self.member = member
-        self.roles = [role for role in member.roles]
+        self.roles = list(member.roles)
 
-    def current_belt(self) -> Belts:
+    def current_belt(self):
         """This function returns the current belt of the ninja."""
 
         highest_belt = None
@@ -76,6 +76,8 @@ class Ninja:
             for belt in Belts:
                 if belt.name == role.name:
                     highest_belt = belt
+
+        return highest_belt
 
         return highest_belt
 
@@ -94,7 +96,9 @@ class BeltsAttributions(commands.Cog):
         self.client = client
 
     @commands.command(name="promove")
-    @commands.has_any_role("🛡️ Admin", "🏆 Champion", "🧑‍🏫 Mentores")
+    @commands.has_any_role(
+        Roles["ADMIN"].name, Roles["CHAMPION"].name, Roles["MENTOR"].name
+    )
     async def promove(
         self, ctx: discord.ext.commands.Context, user: str, belt: str
     ) -> None:
