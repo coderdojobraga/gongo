@@ -1,5 +1,5 @@
 discord==1.0.1
 discord.py==1.7.3
-emoji==1.7.0
+emoji==2.0.0
 python-dotenv==0.20.0
-SQLAlchemy==1.4.37
+SQLAlchemy==1.4.39
