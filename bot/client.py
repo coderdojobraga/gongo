@@ -52,5 +52,7 @@ async def unload(ctx: discord.ext.commands.Context, extension: str):
     await ctx.send(f"O cog {extension} foi desativado.")
 
 
+# Load extensions
 client.load_extension("bot.cogs.belts")
 client.load_extension("bot.cogs.daily_report")
+client.load_extension("bot.cogs.help")
