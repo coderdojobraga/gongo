@@ -10,6 +10,39 @@ cd "${BASE_DIR}/.." || exit 127
 # shellcheck source=../scripts/utils.sh
 . scripts/utils.sh
 
+PROGRAM=$(basename "${BASH_SOURCE[0]:-$0}")
+VERSION=0.7.0
+
+function display_help() {
+  cat <<EOF
+  $(help_title_section Usage)
+    ${PROGRAM} [options]
+
+  $(help_title_section Options)
+    -h --help         Show this screen.
+    -v --version      Show version.
+EOF
+}
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      display_help
+      exit 0
+      ;;
+    -v | --version)
+      display_version "${VERSION}" "${PROGRAM}"
+      exit 0
+      ;;
+    *)
+      display_help >&2
+      exit 1
+      ;;
+  esac
+
+  shift
+done
+
 source .venv/bin/activate
 
 python3 -m bot
