@@ -61,7 +61,7 @@ class BeltsAttributions(commands.Cog):
                 # Adding the log to the database
                 asyncio.create_task(self.log(ctx, member, belt))
             else:
-                await ctx.send(
+                await ctx.reply(
                     f"Ocorreu um erro ao atualizar o cinturão do ninja {user} no site :(\nPor favor tente mais tarde."
                 )
 
