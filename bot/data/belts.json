@@ -6,14 +6,16 @@
       "- Saber o nome de 5 ninjas e 2 mentores",
       "- Completar o Lightbot"
     ],
-    "color": "e9e9e9"
+    "color": "e9e9e9",
+    "translation": "white"
   },
   "Amarelo": {
     "goals": [
       "- Estar presente em 4 sessões",
       "- Fazer um projeto e apresentar à mesa"
     ],
-    "color": "fcd767"
+    "color": "fcd767",
+    "translation": "yellow"
   },
   "Azul": {
     "goals": [
@@ -22,7 +24,8 @@
       "- Conseguir completar o código que os mentores têm preparado para ti",
       "- Fazer um site"
     ],
-    "color": "7f9acd"
+    "color": "7f9acd",
+    "translation": "blue"
   },
   "Verde": {
     "goals": [
@@ -31,7 +34,8 @@
       "- Missão secreta n.º2",
       "- Projeto em raspberry c/ apresentação"
     ],
-    "color": "09a777"
+    "color": "09a777",
+    "translation": "green"
   },
   "Laranja": {
     "goals": [
@@ -40,7 +44,8 @@
       "- Introduzir conceitos de bash",
       "- Missão secreta n.º4 (difícil)"
     ],
-    "color": "f79520"
+    "color": "f79520",
+    "translation": "orange"
   },
   "Vermelho": {
     "goals": [
@@ -48,7 +53,8 @@
       "- Demonstração de conhecimento do paradigma POO",
       "- Ter um projeto que use API externa"
     ],
-    "color": "ec2027"
+    "color": "ec2027",
+    "translation": "red"
   },
   "Roxo": {
     "goals": [
@@ -59,12 +65,14 @@
       "- Criar um Bot com uma API externa",
       "- Última missão secreta"
     ],
-    "color": "6f5977"
+    "color": "6f5977",
+    "translation": "purple"
   },
   "Preto": {
     "goals": [
       "Não tens, és um guru da programação!"
     ],
-    "color": "383b3f"
+    "color": "383b3f",
+    "translation": "black"
   }
 }
