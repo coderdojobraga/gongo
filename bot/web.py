@@ -14,6 +14,6 @@ async def update_belt(ninja, belt):
 
         # Replace '#' with '%23'
         ninja = ninja.replace("#", "%23")
-        url = API_URL + "api/bot/ninja/" + str(ninja)
+        url = API_URL + "/api/bot/ninja/" + str(ninja)
         async with session.patch(url, json=data, headers=headers) as resp:
             return resp.status
