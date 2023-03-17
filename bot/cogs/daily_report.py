@@ -49,7 +49,6 @@ class DailyReport(commands.Cog):
         current_time = datetime.now()
         msg = ""
         if query_log != [] and current_time.hour == 19:
-
             for info in query_log:
                 msg += f"**{info.mentor_id}** atribuiu a **{info.ninja_id}** o cinturão {info.belt_attributed} - {datetime.fromtimestamp(info.timestamp)}\n"
 
