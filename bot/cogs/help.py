@@ -8,7 +8,6 @@ class Help(commands.Cog):
 
     @commands.command(name="help")
     async def help(self, ctx: discord.ext.commands.Context) -> None:
-
         # Embed sent by the bot
         embed = discord.Embed(
             title="Comandos: [Obrigatório] <Opcional> (alias)", color=0x3489EB
