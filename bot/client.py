@@ -1,5 +1,5 @@
 import logging
-import os
+import sys
 
 import discord
 from discord.ext import commands
@@ -14,7 +14,7 @@ client = commands.Bot(
     case_insensitive=True,
 )
 
-# Logging setup
+# Logging to file
 logger = logging.getLogger("discord")
 logger.setLevel(logging.INFO)
 handler = logging.FileHandler(
@@ -25,14 +25,21 @@ handler.setFormatter(
 )
 logger.addHandler(handler)
 
+# Logging to stdout
+stdout_handler = logging.StreamHandler(sys.stdout)
+stdout_handler.setFormatter(
+    logging.Formatter("%(asctime)s:%(levelname)s:%(name)s: %(message)s")
+)
+logger.addHandler(stdout_handler)
+
 
 @client.event
 async def on_ready():
     """Client event that run when the program is ready."""
 
-    logger.info("The bot was logged in")
+    logger.info("The bot was logged in ✨")
     DailyReport(client).report.start()
-    logger.info("The task has been loaded")
+    logger.info("The bot is ready 🚀")
 
 
 @client.command()

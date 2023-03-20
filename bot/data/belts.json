@@ -1,70 +1,78 @@
 {
   "Branco": {
     "goals": [
-      "- Finalizar um projeto sozinho",
-      "- Apresentar o teu projeto a outros ninjas",
-      "- Saber o nome de 5 ninjas e 2 mentores",
-      "- Completar o Lightbot"
+      "- Ter maior autonomia com os conceitos básicos",
+      "- Saber aplicar condicionais e ciclos",
+      "- Ter concluído pelo menos um projeto em Scratch"
     ],
-    "color": "e9e9e9"
+    "color": "e9e9e9",
+    "translation": "white"
   },
   "Amarelo": {
     "goals": [
-      "- Estar presente em 4 sessões",
-      "- Fazer um projeto e apresentar à mesa"
+      "- Saber manipular variáveis da forma correta",
+      "- Saber aplicar o conceito de módulos",
+      "- Completar todos os níveis do Lightbot",
+      "- Terminar outros 2 projetos em Scratch",
+      "- Terminar pelo menos 1 projeto usando o conceito de módulos"
     ],
-    "color": "fcd767"
+    "color": "fcd767",
+    "translation": "yellow"
   },
   "Azul": {
     "goals": [
-      "- Ajudar como mentor numa sessão",
-      "- Saber o nome de 7 ninjas e 4 mentores",
-      "- Conseguir completar o código que os mentores têm preparado para ti",
-      "- Fazer um site"
+      "- Aplicar o que aprendeu no Scratch noutra linguagem",
+      "- Compreender os conceitos e as aplicações de listas e strings",
+      "- Terminar 2 projetos na nova linguagem (1 deles pode ser uma adaptação de algum já feito em Scratch, se o Ninja quiser)"
     ],
-    "color": "7f9acd"
+    "color": "7f9acd",
+    "translation": "blue"
   },
   "Verde": {
     "goals": [
-      "- Apresentar um projeto para o Dojo inteiro",
-      "- Chegar a 5 Kyu em CodeWars",
-      "- Missão secreta n.º2",
-      "- Projeto em raspberry c/ apresentação"
+      "- Aprender a criar interfaces",
+      "- Utilizar módulos ou bibliotecas extra como Pygame, GUIZero, etc",
+      "- Terminar 1 projeto usando interface e 1 adaptação de um projeto feito em Scratch",
+      "- Criar um website simples, recorrendo a HTML (não necessita de CSS nem JavaScript)"
     ],
-    "color": "09a777"
+    "color": "09a777",
+    "translation": "green"
   },
   "Laranja": {
     "goals": [
-      "- Projeto de Fuler",
-      "- Com a ajuda de um mentor, montar um computador",
-      "- Introduzir conceitos de bash",
-      "- Missão secreta n.º4 (difícil)"
+      "- Aprender a usar CSS para alterar a estrutura e a estética de uma página HTML, com recurso a layouts flexbox e/ou grid e a animações",
+      "- Aprender JavaScript para adicionar interatividade (botões, avisos, etc) a uma página HTML",
+      "- Conhecer os utilitários básicos de linha de comandos (cd, mkdir, ls/dir, rm, cat, etc)",
+      "- Conhecer os comandos básicos de Git (clone, add, commit, push, pull, etc), em terminal ou em interface gráfica"
     ],
-    "color": "f79520"
+    "color": "f79520",
+    "translation": "orange"
   },
   "Vermelho": {
     "goals": [
-      "- Ser mentor 1 sessão",
-      "- Demonstração de conhecimento do paradigma POO",
-      "- Ter um projeto que use API externa"
+      "- Aprender como aplicar Regex",
+      "- Aprender como criar Bases de Dados (usando SQLite, por exemplo)",
+      "- Aprender os conceitos básicos de programação com threads e exclusão mútua (locks)",
+      "- Terminar 2 projetos com estes conceitos"
     ],
-    "color": "ec2027"
+    "color": "ec2027",
+    "translation": "red"
   },
   "Roxo": {
     "goals": [
-      "- Conceitos básicos g7",
-      "- Criar uma missão secreta",
-      "- Ser mentor 2 sessões",
-      "- Ter conta e saber usar o Slack",
-      "- Criar um Bot com uma API externa",
-      "- Última missão secreta"
+      "- Dominar APIs, incluindo utilizar APIs externas e como aplicá-las",
+      "- Criar uma API REST",
+      "- Aprender a usar Docker para distribuição de aplicações em containers",
+      "- Fazer um projeto com Raspberry Pi"
     ],
-    "color": "6f5977"
+    "color": "6f5977",
+    "translation": "purple"
   },
   "Preto": {
     "goals": [
       "Não tens, és um guru da programação!"
     ],
-    "color": "383b3f"
+    "color": "383b3f",
+    "translation": "black"
   }
 }

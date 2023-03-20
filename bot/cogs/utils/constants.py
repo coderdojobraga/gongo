@@ -1,3 +1,4 @@
+import json
 from enum import Enum, unique
 
 import discord
@@ -54,3 +55,12 @@ def get_role_from_name(guild: discord.Guild, belt: str) -> discord.Role:
     for role in guild.roles:
         if role.name == belt:
             return role
+
+
+def translate_belt_name(belt: str) -> str:
+    file = "bot/data/belts.json"
+    with open(file) as json_file:
+        data = json.load(json_file)
+        belt = data[belt]["translation"]
+
+        return belt
