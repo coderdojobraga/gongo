@@ -5,3 +5,5 @@ services:
     container_name: gongo
     build: .
     image: python:3.10-alpine3.16
+    env_file:
+      - .env
