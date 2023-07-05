@@ -1,0 +1,28 @@
+# Ignore common files generated during the build process
+*.pyc
+*.pyo
+__pycache__/
+*.egg-info/
+*.egg
+*.egg-info
+
+# Ignore development environment files
+*.env
+*.log
+.env
+.venv/
+.idea/
+.vscode/
+.cache/
+.coverage
+htmlcov/
+
+# Ignore scripts
+scripts/
+
+# Ignore non-essential files and directories
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+LICENSE.txt
+README.md
+requirements-dev.txt
